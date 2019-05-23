@@ -26,6 +26,7 @@ description: |
 
 grade: stable
 confinement: strict
+license: Apache-2.0
 
 apps:
   ccls:
