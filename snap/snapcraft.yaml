@@ -41,10 +41,10 @@ parts:
     configflags:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-7
-      - -DLLVM_DIR=/usr/lib/llvm-7
       - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-7/include
     build-packages:
       - rapidjson-dev
+      - llvm-7-dev
       - libclang-7-dev
       - clang-7
       - zlib1g-dev
