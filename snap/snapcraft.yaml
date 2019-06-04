@@ -41,6 +41,9 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-7
       - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-7/include
+    override-build: |
+      sed -i "s/\${CLANG_RESOURCE_DIR}/\/snap\/ccls\/current\/\${CLANG_RESOURCE_DIR}/" ../src/CMakeLists.txt
+      snapcraftctl build
     build-packages:
       - rapidjson-dev
       - llvm-7-dev
@@ -49,3 +52,4 @@ parts:
       - zlib1g-dev
     stage-packages:
       - libllvm7
+      - libclang-common-7-dev
