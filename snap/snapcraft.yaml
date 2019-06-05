@@ -28,6 +28,10 @@ grade: stable
 confinement: strict
 license: Apache-2.0
 
+layout:
+  /usr/lib/llvm-7:
+    bind: $SNAP/usr/lib/llvm-7
+
 apps:
   ccls:
     command: ccls
@@ -43,9 +47,6 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-7
       - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-7/include
-    override-build: |
-      sed -i "s/\${CLANG_RESOURCE_DIR}/\/snap\/ccls\/current\/\${CLANG_RESOURCE_DIR}/" ../src/CMakeLists.txt
-      snapcraftctl build
     build-packages:
       - rapidjson-dev
       - llvm-7-dev
