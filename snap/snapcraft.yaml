@@ -25,14 +25,12 @@ description: |
   complete. Saving files will incrementally update the index.
 
 grade: stable
-confinement: strict
+confinement: classic
 license: Apache-2.0
 
 apps:
   ccls:
     command: ccls
-    plugs:
-      - home
 
 parts:
   ccls:
