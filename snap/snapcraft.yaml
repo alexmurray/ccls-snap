@@ -30,7 +30,7 @@ license: Apache-2.0
 
 apps:
   ccls:
-    command: ccls
+    command: bin/ccls
 
 parts:
   ccls:
