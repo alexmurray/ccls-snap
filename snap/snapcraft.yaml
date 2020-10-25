@@ -1,6 +1,6 @@
 name: ccls
 base: core18 # the base snap is the execution environment for this snap
-version: "0.20190823.6"
+version: "0.20201025"
 summary: C/C++/ObjC Language Server
 description: |
   ccls is a C/C++/Objective-C language server.
@@ -36,7 +36,7 @@ parts:
   ccls:
     plugin: cmake
     source: https://github.com/MaskRay/ccls.git
-    source-tag: "0.20190823.6"
+    source-tag: $SNAPCRAFT_PROJECT_VERSION
     configflags:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-7
