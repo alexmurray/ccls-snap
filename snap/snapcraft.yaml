@@ -1,6 +1,6 @@
 name: ccls
 base: core18 # the base snap is the execution environment for this snap
-version: "0.20210330"
+version: "0.20220729"
 summary: C/C++/ObjC Language Server
 description: |
   ccls is a C/C++/Objective-C language server.
