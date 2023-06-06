@@ -1,5 +1,5 @@
 name: ccls
-base: core18 # the base snap is the execution environment for this snap
+base: core20
 version: "0.20220729"
 summary: C/C++/ObjC Language Server
 description: |
@@ -30,26 +30,28 @@ license: Apache-2.0
 
 apps:
   ccls:
-    command: bin/ccls
+    command: usr/bin/ccls
 
 parts:
   ccls:
     plugin: cmake
     source: https://github.com/MaskRay/ccls.git
     source-tag: $SNAPCRAFT_PROJECT_VERSION
-    configflags:
+    cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
-      - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-7
-      - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-7/include
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-12
+      - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-12/include
     override-build: |
       sed -i "s/\${CLANG_RESOURCE_DIR}/\/snap\/ccls\/current\/\${CLANG_RESOURCE_DIR}/" ../src/CMakeLists.txt
       snapcraftctl build
     build-packages:
       - rapidjson-dev
-      - llvm-7-dev
-      - libclang-7-dev
-      - clang-7
+      - llvm-12-dev
+      - libclang-12-dev
+      - clang-12
       - zlib1g-dev
     stage-packages:
-      - libllvm7
-      - libclang-common-7-dev
+      - libllvm12
+      - libclang-common-12-dev
+      - libclang-cpp12
