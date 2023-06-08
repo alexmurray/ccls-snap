@@ -40,18 +40,18 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX=/usr
-      - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-12
-      - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-12/include
+      - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-11
+      - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-11/include
     override-build: |
       sed -i "s/\${CLANG_RESOURCE_DIR}/\/snap\/ccls\/current\/\${CLANG_RESOURCE_DIR}/" ../src/CMakeLists.txt
       snapcraftctl build
     build-packages:
       - rapidjson-dev
-      - llvm-12-dev
-      - libclang-12-dev
-      - clang-12
+      - llvm-11-dev
+      - libclang-11-dev
+      - clang-11
       - zlib1g-dev
     stage-packages:
-      - libllvm12
-      - libclang-common-12-dev
-      - libclang-cpp12
+      - libllvm11
+      - libclang-common-11-dev
+      - libclang-cpp11
