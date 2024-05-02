@@ -31,6 +31,8 @@ license: Apache-2.0
 apps:
   ccls:
     command: usr/bin/ccls
+    environment:
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
 
 parts:
   ccls:
