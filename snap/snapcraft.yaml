@@ -1,6 +1,6 @@
 name: ccls
-base: core22
-version: "0.20240202"
+base: core24
+version: "0.20241108"
 summary: C/C++/ObjC Language Server
 description: |
   ccls is a C/C++/Objective-C language server.
@@ -31,6 +31,11 @@ license: Apache-2.0
 apps:
   ccls:
     command: usr/bin/ccls
+    # not sure why this is needed since snapcraft is setting RPATH on the ccls
+    # binary via enable-patchelf below but it seems it still can't find libxml2
+    # otherwise so set this explicitly
+    environment:
+      LD_LIBRARY_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
 
 parts:
   ccls:
@@ -42,18 +47,18 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX=/usr
-      - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-15
-      - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-15/include
+      - -DCMAKE_PREFIX_PATH=/usr/lib/llvm-18
+      - -DLLVM_INCLUDE_DIR=/usr/lib/llvm-18/include
     override-build: |
       sed -i "s/\${CLANG_RESOURCE_DIR}/\/snap\/ccls\/current\/\${CLANG_RESOURCE_DIR}/" ../src/CMakeLists.txt
       snapcraftctl build
     build-packages:
       - rapidjson-dev
-      - llvm-15-dev
-      - libclang-15-dev
-      - clang-15
+      - llvm-18-dev
+      - libclang-18-dev
+      - clang-18
       - zlib1g-dev
     stage-packages:
-      - libllvm15
-      - libclang-common-15-dev
-      - libclang-cpp15
+      - libllvm18
+      - libclang-common-18-dev
+      - libclang-cpp18
