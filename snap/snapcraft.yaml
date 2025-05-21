@@ -41,7 +41,7 @@ parts:
   ccls:
     plugin: cmake
     source: https://github.com/MaskRay/ccls.git
-    source-tag: $SNAPCRAFT_PROJECT_VERSION
+    source-tag: $CRAFT_PROJECT_VERSION
     build-attributes:
       - enable-patchelf
     cmake-parameters:
